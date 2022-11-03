@@ -1,0 +1,138 @@
+[
+    {
+        "id": 1001,
+        "name": "구쓰살롱",
+        "category": "일반주점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "광진구",
+        "isFeatured": true,
+        "isFavorite": false,
+        "address": "군자로7길 7 1F",
+        "description": "번쩍번쩍",
+        "coordinates": {
+            "latitude": 37.54628069864881,
+            "longitude": 127.06993822410188
+        },
+        "imageName": "goossalon_1"
+    },
+    {
+        "id": 1002,
+        "name": "논현양꼬치",
+        "category": "일반주점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "강남구",
+        "isFeatured": true,
+        "isFavorite": true,
+        "address": "학동로6길 37",
+        "description": "양꼬치엔하을빈",
+        "coordinates": {
+            "latitude": 37.509893628769795,
+            "longitude": 127.02573128400152
+        },
+        "imageName": "nh-yanggch_1,nh-yanggch_2"
+    },
+    {
+        "id": 1003,
+        "name": "맥아박스",
+        "category": "일반주점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "강남구",
+        "isFeatured": true,
+        "isFavorite": true,
+        "address": "학동로2길 29 B1F",
+        "description": "맥-아박스",
+        "coordinates": {
+            "latitude": 37.50956530235335,
+            "longitude": 127.02311846778957
+        },
+        "imageName": "mc-a-box_1,mc-a-box_2,mc-a-box_3"
+    },
+    {
+        "id": 1004,
+        "name": "샤브로21",
+        "category": "일반음식점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "광진구",
+        "isFeatured": true,
+        "isFavorite": false,
+        "address": "군자로 1(화양동)",
+        "description": "1인 1인덕션",
+        "coordinates": {
+            "latitude": 37.54372061125441,
+            "longitude": 127.07201789566705
+        },
+        "imageName": "shabro21_1,shabro21_2"
+    },
+    {
+        "id": 1005,
+        "name": "손국시",
+        "category": "일반음식점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "강남구",
+        "isFeatured": true,
+        "isFavorite": true,
+        "address": "학동로2길 19",
+        "description": "칼제비!",
+        "coordinates": {
+            "latitude": 37.5100090609113,
+            "longitude": 127.02304791420225
+        },
+        "imageName": "son-guk-si_1"
+    },
+    {
+        "id": 1006,
+        "name": "하이난",
+        "category": "일반음식점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "광진구",
+        "isFeatured": true,
+        "isFavorite": false,
+        "address": "능동로 243-1",
+        "description": "중화요리",
+        "coordinates": {
+            "latitude": 37.552040773386295,
+            "longitude": 127.07649038563889
+        },
+        "imageName": "hainan_1"
+    },
+    {
+        "id": 1007,
+        "name": "한돌참치",
+        "category": "일반음식점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "종로구",
+        "isFeatured": true,
+        "isFavorite": true,
+        "address": "대학로 153",
+        "description": "중화요리",
+        "coordinates": {
+            "latitude": 37.58480096743379,
+            "longitude": 127.00120576938464
+        },
+        "imageName": "handolchamchi_1,handolchamchi_2,handolchamchi_3"
+    },
+    {
+        "id": 1008,
+        "name": "홍로",
+        "category": "일반음식점",
+        "primeColorHexStr": "0xf03018",
+        "city": "서울",
+        "state": "강남구",
+        "isFeatured": true,
+        "isFavorite": true,
+        "address": "학동로4길 50",
+        "description": "스지탕",
+        "coordinates": {
+            "latitude": 37.50830820644845,
+            "longitude": 127.02409075860234
+        },
+        "imageName": "hong-ro_1,hong-ro_2,hong-ro_3,hong-ro_4"
+    }
+]

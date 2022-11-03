@@ -1,0 +1,47 @@
+//
+//  Landmark.swift
+//  Landmarks
+//
+//  Created by 김보겸 on 2022/11/02.
+//
+
+import Foundation
+import SwiftUI
+import CoreLocation
+
+struct Landmark: Hashable, Codable, Identifiable {    
+    var id: Int
+    var name: String
+    var primeColorHexStr: String
+    var city: String
+    var state: String
+    var address: String
+    var description: String
+    
+    var isFavorite: Bool
+    
+    private var imageName: String
+    /*
+    var images: [Image] {
+        let imageSplits = imageName.split(separator: ",")
+        if imageSplits.count > 1 {
+            return imageSplits.map { Image(String($0)) }
+        } else {
+            return [Image(imageName)]
+        }
+    }
+     */
+    var imageNames: [String] {
+        imageName.split(separator: ",").map { String($0) }
+    }
+    
+    private var coordinates: Coordinates
+    var locationCoordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
+    struct Coordinates: Hashable, Codable {
+        var latitude: Double
+        var longitude: Double
+    }
+}
