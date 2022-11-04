@@ -19,6 +19,13 @@ struct Landmark: Hashable, Codable, Identifiable {
     var description: String
     
     var isFavorite: Bool
+    var isFeatured: Bool
+    
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case 일반음식점 = "일반음식점"
+        case 일반주점 = "일반주점"
+    }
     
     private var imageName: String
     /*

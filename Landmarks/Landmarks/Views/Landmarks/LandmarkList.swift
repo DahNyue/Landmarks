@@ -17,11 +17,14 @@ struct LandmarkList: View {
     
     var body: some View {
         NavigationView {
+            /*
             VStack {
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
+                .tint(.brown)
                 .padding(.horizontal, 20)
+                
                 List {
                     ForEach(filteredLandmarks) { landmark in
                         NavigationLink {
@@ -29,6 +32,22 @@ struct LandmarkList: View {
                         } label: {
                             LandmarkRow(landmark: landmark)
                         }
+                    }
+                }
+            }
+            .navigationTitle("Landmarks")
+             */
+            List {
+                Toggle(isOn: $showFavoritesOnly) {
+                    Text("Favorites only")
+                }
+                .tint(.orange)
+                
+                ForEach(filteredLandmarks) { landmark in
+                    NavigationLink {
+                        LandmarkDetail(landmark: landmark)
+                    } label: {
+                        LandmarkRow(landmark: landmark)
                     }
                 }
             }

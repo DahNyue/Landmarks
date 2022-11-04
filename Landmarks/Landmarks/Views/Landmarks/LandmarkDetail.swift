@@ -72,11 +72,10 @@ struct LandmarkDetail: View {
             .navigationBarBackButtonHidden()
             .navigationBarItems(leading:
                                     Image(systemName: "chevron.backward")
-                                        .foregroundColor(.white)
                                         .onTapGesture {
                                             dismiss()
-                                        }
-                                , trailing:
+                                        },
+                                trailing:
                                     FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
             )
         }
