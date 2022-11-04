@@ -16,14 +16,14 @@ struct CircleImage: View {
     var body: some View {
         let space : CGFloat = 3
         if imageNames.count == 4 {
-            HStack(spacing: space) {
-                VStack(spacing: space) {
+            VStack(spacing: space) {
+                HStack(spacing: space) {
                     Image(imageNames[0]).resizable()
                         .aspectRatio(contentMode: .fit)
                     Image(imageNames[1]).resizable()
                         .aspectRatio(contentMode: .fit)
                 }
-                VStack(spacing: space) {
+                HStack(spacing: space) {
                     Image(imageNames[2]).resizable()
                         .aspectRatio(contentMode: .fit)
                     Image(imageNames[3]).resizable()

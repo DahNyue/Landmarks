@@ -17,6 +17,16 @@ struct LandmarkDetail: View {
         modelData.landmarks.firstIndex(where: { $0.id == landmark.id }) ?? 0
     }
     
+    var color :Color? {
+//        if let avgColor = Image(landmark.imageNames.last!).averageColor {
+//            return Color(uiColor: avgColor)
+//        } else {
+        return Color(landmark.primeColorHexStr)
+//        }
+    }
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -33,7 +43,7 @@ struct LandmarkDetail: View {
                         Text(landmark.name)
                             .font(.title)
                             .fontWeight(.black)
-                            .foregroundColor(Color(Int(landmark.primeColorHexStr) ?? 0x000000))
+                            .foregroundColor(color)
                             .multilineTextAlignment(.center)
                         FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                     }
@@ -59,6 +69,16 @@ struct LandmarkDetail: View {
             }
             .navigationTitle(landmark.name)
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .navigationBarItems(leading:
+                                    Image(systemName: "chevron.backward")
+                                        .foregroundColor(.white)
+                                        .onTapGesture {
+                                            dismiss()
+                                        }
+                                , trailing:
+                                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+            )
         }
         .ignoresSafeArea()
     }

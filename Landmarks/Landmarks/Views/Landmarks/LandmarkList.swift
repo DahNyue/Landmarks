@@ -17,15 +17,18 @@ struct LandmarkList: View {
     
     var body: some View {
         NavigationView {
-            List {
+            VStack {
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
-                ForEach(filteredLandmarks) { landmark in
-                    NavigationLink {
-                        LandmarkDetail(landmark: landmark)
-                    } label: {
-                        LandmarkRow(landmark: landmark)
+                .padding(.horizontal, 20)
+                List {
+                    ForEach(filteredLandmarks) { landmark in
+                        NavigationLink {
+                            LandmarkDetail(landmark: landmark)
+                        } label: {
+                            LandmarkRow(landmark: landmark)
+                        }
                     }
                 }
             }
@@ -42,4 +45,17 @@ struct LandmarkList_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: deviceName)).previewDisplayName(deviceName)
         }
     }
+}
+
+extension UINavigationController : UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    // MARK: Navigation Stack에 쌓인 뷰가 1개를 초과해야 제스처가 동작 하도록
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            return viewControllers.count > 1
+    }
+
 }

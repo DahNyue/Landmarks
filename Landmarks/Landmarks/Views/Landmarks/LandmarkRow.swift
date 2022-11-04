@@ -15,6 +15,7 @@ struct LandmarkRow: View {
             Image(landmark.imageNames.first ?? "")
                 .resizable()
                 .frame(width: 50, height: 50)
+                .cornerRadius(4)
             Text(landmark.name)
 
             Spacer()
