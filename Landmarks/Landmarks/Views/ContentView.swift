@@ -30,7 +30,7 @@ struct ContentView: View {
                 })
                 .tag(Tab.list)
         })
-        .accentColor(.orange)
+        .tint(.accentColor)
     }
 }
 
