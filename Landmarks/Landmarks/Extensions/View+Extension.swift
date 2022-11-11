@@ -90,4 +90,24 @@ extension UIView {
             layer.render(in: rendererContext.cgContext)
         }
     }
+    
+    func spring(_ duration: Double = 0.1125) {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.05, delay: 0, options: .curveEaseOut) {
+                self.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            } completion: { _ in
+                UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut) {
+                    self.transform = CGAffineTransform(scaleX: 0.825, y: 0.825)
+                } completion: { _ in
+                    UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut) {
+                        self.transform = CGAffineTransform(scaleX: 1.0125, y: 1.0125)
+                    } completion: { _ in
+                        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut) {
+                            self.transform = CGAffineTransform.identity
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

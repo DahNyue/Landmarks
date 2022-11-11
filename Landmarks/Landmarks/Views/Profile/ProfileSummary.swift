@@ -61,7 +61,7 @@ struct ProfileSummary: View {
                     Text("Completed Badges")
                         .font(.headline)
                     
-                    ScrollView(axes: .horizontal) {
+                    ScrollView(.horizontal) {
                         HStack {
                             ForEach(self.obsect.badges, id: \.name) { badge in
                                 badge

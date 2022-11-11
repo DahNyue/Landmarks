@@ -13,6 +13,9 @@ struct Landmark: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     var primeColorHexStr: String
+    var color :Color? {
+        return Color(primeColorHexStr)
+    }
     var city: String
     var state: String
     var address: String
@@ -40,6 +43,10 @@ struct Landmark: Hashable, Codable, Identifiable {
      */
     var imageNames: [String] {
         imageName.split(separator: ",").map { String($0) }
+    }
+    
+    var featureImage: Image? {
+        isFeatured ? Image(imageName.split(separator: ",").map { String($0) }.first ?? "") : nil
     }
     
     private var coordinates: Coordinates
