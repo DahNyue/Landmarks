@@ -22,13 +22,16 @@ class APIService: BaseService {
     @discardableResult
     func requestApi<T: Decodable>(defaultAppToken: Bool = true, requestURL url : URL?, requestType type: HTTPMethod, parameter : Parameters? = nil, indicatorShow: Bool = true, alertShow: Bool = true ,completion: @escaping (Result<T?,CommonAPIError>) -> Void) -> DataRequest? {
         //인디케이터 노출
+#if iOS
         if indicatorShow {
             DispatchQueue.main.async {
                 LoadingIndicatorManager.shared.showIndicator(isShow: true, backgroundColor: .init(red: 0, green: 0, blue: 0, alpha: 0.3))
             }
         }
+#endif
         
         //통신가능한 상태 체크
+#if iOS
         guard Reachability.isConnectedToNetwork() else {
             //인디케이터 숨김
             LoadingIndicatorManager.shared.showIndicator(isShow: false)
@@ -44,10 +47,13 @@ class APIService: BaseService {
              */
             return nil
         }
+#endif
         //URL 에러
         guard let requestUrl = url else {
             //인디케이터 숨김
+#if iOS
             LoadingIndicatorManager.shared.showIndicator(isShow: false)
+#endif
             completion(.failure(.urlError))
             return nil
         }
@@ -63,7 +69,9 @@ class APIService: BaseService {
                 
             } catch {
                 completion(.failure(.paramEncryptError))
+#if iOS
                 LoadingIndicatorManager.shared.showIndicator(isShow: false)
+#endif
                 return nil
             }
         }
@@ -96,8 +104,10 @@ class APIService: BaseService {
                                encoding: JSONEncoding.default,
                                headers: header,
                                interceptor: APIInterceptor()).response(queue: queue) { response in
+#if iOS
             //인디케이터 숨김
             LoadingIndicatorManager.shared.showIndicator(isShow: false)
+#endif
             switch response.result {
             case .success(_) :
                 if let responseData = response.data {
@@ -191,10 +201,12 @@ class APIService: BaseService {
                                 print(decodeError.localizedDescription)
                             }
                         }
+#if iOS
                         //에러 메세지 노출 후 확인 버튼 터치시 처리
                         Alert.showOneButtonAlertController( title: catchedError.localizedDescription) {
                             completion(.failure(.jsonDecodeError))
                         }
+#endif
                     }
                 } else {
                     //reponse data 누락
@@ -202,10 +214,12 @@ class APIService: BaseService {
                 }
             case .failure(let error):
                 print("response failure \(error)")
+#if iOS
                 //네트워크 에러
                 Alert.showOneButtonAlertController( title: error.localizedDescription) {
                     completion(.failure(.networkError))
                 }
+#endif
             }
         }
     }

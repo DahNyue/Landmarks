@@ -44,6 +44,9 @@ struct Landmark: Hashable, Codable, Identifiable {
     var imageNames: [String] {
         imageName.split(separator: ",").map { String($0) }
     }
+    var lastImage: Image {
+        Image(imageNames.last ?? "")
+    }
     
     var featureImage: Image? {
         isFeatured ? Image(imageName.split(separator: ",").map { String($0) }.first ?? "") : nil

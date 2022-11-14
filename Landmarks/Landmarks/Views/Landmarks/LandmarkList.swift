@@ -66,6 +66,7 @@ struct LandmarkList_Previews: PreviewProvider {
     }
 }
 
+#if iOS
 extension UINavigationController : UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,3 +79,4 @@ extension UINavigationController : UINavigationControllerDelegate, UIGestureReco
     }
 
 }
+#endif

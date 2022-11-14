@@ -30,7 +30,9 @@ struct CircleImage: View {
                         .aspectRatio(contentMode: .fit)
                 }
             }
+            #if iOS
             .frame(width: 250, height: 250)
+            #endif
             .aspectRatio(contentMode: .fit)
             .background(.white)
             .clipShape(Circle())
@@ -53,7 +55,9 @@ struct CircleImage: View {
                     }
                 }
             }
+            #if iOS
             .frame(width: 250, height: 250)
+            #endif
             .aspectRatio(contentMode: .fit)
             .background(.white)
             .clipShape(Circle())
