@@ -11,6 +11,7 @@ import UIKit
 struct PageControl: UIViewRepresentable {
     var numberOfPages: Int
     @Binding var currentPage: Int
+    var isAccent: Bool = false
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -19,6 +20,10 @@ struct PageControl: UIViewRepresentable {
     func makeUIView(context: Context) -> UIPageControl {
         let control = UIPageControl()
         control.numberOfPages = numberOfPages
+        if isAccent {
+            control.currentPageIndicatorTintColor = UIColor(.accentColor)
+            control.pageIndicatorTintColor = UIColor(.accentColor.opacity(0.5))
+        }
         control.addTarget(
             context.coordinator,
             action: #selector(Coordinator.updateCurrentPage(sender:)),

@@ -10,7 +10,12 @@ import UIKit
 
 struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
-    @Binding var currentPage: Int
+    @Binding var currentPage: Int {
+        didSet {
+            extractCurrentPage?(currentPage)
+        }
+    }
+    var extractCurrentPage: ((Int) -> Void)?
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -20,15 +25,22 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         let pageViewController = UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal)
-        pageViewController.dataSource = context.coordinator
-        pageViewController.delegate = context.coordinator
+        if pages.count > 1 {
+            pageViewController.dataSource = context.coordinator
+            pageViewController.delegate = context.coordinator
+        } else {
+            pageViewController.dataSource = nil
+            pageViewController.delegate = nil
+        }
 
         return pageViewController
     }
 
     func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
         if let viewControllers = context.coordinator.controllers[safe:currentPage] {
-            pageViewController.setViewControllers([viewControllers], direction: .forward, animated: true)
+            DispatchQueue.main.async {
+                pageViewController.setViewControllers([viewControllers], direction: .forward, animated: true)
+            }
         }
     }
     

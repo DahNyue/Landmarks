@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    @Binding var isSet: Bool
+    var id: Int
+    @Binding var isSet: Bool {
+        didSet {
+            ModelData().updateFavorite(id: id, isOn: isSet)
+        }
+    }
     
     var body: some View {
         Button {
@@ -23,6 +28,6 @@ struct FavoriteButton: View {
 
 struct FavoriteButton_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteButton(isSet: .constant(true))
+        FavoriteButton(id: 0, isSet: .constant(true))
     }
 }

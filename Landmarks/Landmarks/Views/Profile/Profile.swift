@@ -12,6 +12,8 @@ struct Profile {
     var prefersNotifications = true
     var seasonalPhoto = Season.winter
     var goalDate = Date()
+    
+    var preferredViewType = ViewType.slideGlass
 
     static let `default` = Profile(username: "DahNyue")
 
@@ -21,6 +23,13 @@ struct Profile {
         case autumn = "🍂"
         case winter = "☃️"
 
+        var id: String { rawValue }
+    }
+    
+    enum ViewType: String, CaseIterable, Identifiable {
+        case stainedGlass = "🧩"
+        case slideGlass = "📃"
+        
         var id: String { rawValue }
     }
 }

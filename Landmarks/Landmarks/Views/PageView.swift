@@ -10,13 +10,20 @@ import SwiftUI
 struct PageView<Page: View>: View {
     var pages: [Page]
     @State private var currentPage = 0
+    
+    var returnCurrentPage: ((Int) -> Void)?
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            PageViewController(pages: pages, currentPage: $currentPage)
-            PageControl(numberOfPages: pages.count, currentPage: $currentPage)
-                .frame(width: CGFloat(pages.count * 18))
-                .padding(.trailing)
+            if pages.count > 0 {
+                PageViewController(pages: pages, currentPage: $currentPage) { page in
+                    returnCurrentPage?(page)
+                }
+                
+                PageControl(numberOfPages: pages.count, currentPage: $currentPage)
+                    .frame(width: CGFloat(pages.count * 18))
+                    .padding(.trailing)
+            }
         }
     }
 }

@@ -38,4 +38,18 @@ extension Color {
         }
         return nil
     }
+    
+    func complementaryColor() -> Color {
+        
+        let uiColor = UIColor(self)
+        let ciColor = CIColor(color: uiColor)
+        
+        let compR: CGFloat = 1.0 - ciColor.red
+        let compG: CGFloat = 1.0 - ciColor.green
+        let compB: CGFloat = 1.0 - ciColor.blue
+        
+        let color = Color(CGColor(red: compR, green: compG, blue: compB, alpha: ciColor.alpha))
+        
+        return color
+    }
 }

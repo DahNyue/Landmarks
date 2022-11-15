@@ -33,7 +33,7 @@ struct LandmarkDetail: View {
                         .ignoresSafeArea(edges: .top)
                         .frame(height: 380)
                     
-                    CircleImage(imageNames: landmark.imageNames)
+                    CircleImage(preferredViewType: modelData.profile.preferredViewType, imageNames: landmark.imageNames)
                         .offset(y: -130)
                         .padding(.bottom, -130)
                     
@@ -44,7 +44,7 @@ struct LandmarkDetail: View {
                                 .fontWeight(.black)
                                 .foregroundColor(landmark.color)
                                 .multilineTextAlignment(.center)
-                            FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                            FavoriteButton(id: landmark.id, isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                         }
                         HStack {
                             Text(landmark.address)
@@ -76,7 +76,7 @@ struct LandmarkDetail: View {
                             dismiss()
                         },
                     trailing:
-                        FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                        FavoriteButton(id: landmark.id, isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                 )
                 .padding(.bottom, 500)
                 .overlay {

@@ -30,6 +30,17 @@ struct ProfileEditor: View {
             .tint(.accentColor)
             
             VStack(alignment: .leading, spacing: 20) {
+                Text("Preferred View Type").bold()
+                
+                Picker("Preferred View Type", selection: $profile.preferredViewType) {
+                    ForEach(Profile.ViewType.allCases) { type in
+                        Text(type.rawValue).tag(type)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+            
+            VStack(alignment: .leading, spacing: 20) {
                 Text("Seasonal Photo").bold()
                 
                 Picker("Seasonal Photo", selection: $profile.seasonalPhoto) {

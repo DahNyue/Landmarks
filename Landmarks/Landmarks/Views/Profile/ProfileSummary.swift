@@ -52,6 +52,7 @@ struct ProfileSummary: View {
                     .font(.title)
 
                 Text("Notifications: \(profile.prefersNotifications ? "On": "Off" )")
+                Text("View type: \(profile.preferredViewType.rawValue)")
                 Text("Seasonal Photos: \(profile.seasonalPhoto.rawValue)")
                 Text("Goal Date: ") + Text(profile.goalDate, style: .date) // Text(profile.goalDate, formatter: self.dateFormat)
                 

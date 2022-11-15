@@ -19,10 +19,13 @@ struct CategoryItem: View {
                 .cornerRadius(5)
             
             Text(landmark.name)
+                .fontWeight(.semibold)
                 .foregroundColor(Color(landmark.primeColorHexStr))
                 .font(.caption)
         }
+        .shadow(color: Color(landmark.primeColorHexStr) ?? .white, radius: 6, x: 3, y: 3)
         .padding(.leading, 15)
+        .padding(.vertical, 15)
     }
 }
 
