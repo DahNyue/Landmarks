@@ -61,20 +61,8 @@ struct LandmarkList_Previews: PreviewProvider {
         ForEach(["iPhone SE (3rd generation)", "iPhone 14 Pro Max", "iPad Pro (12.9-inch) (5th generation)"], id: \.self) { deviceName in
             LandmarkList()
                 .environmentObject(ModelData())
+            /// preview 용 Device 분류, 디바이스가 내 시뮬레이터로 동작이 되어야 제대로 동작하는 듯 함
                 .previewDevice(PreviewDevice(rawValue: deviceName)).previewDisplayName(deviceName)
         }
     }
-}
-
-extension UINavigationController : UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        interactivePopGestureRecognizer?.delegate = self
-    }
-
-    // MARK: Navigation Stack에 쌓인 뷰가 1개를 초과해야 제스처가 동작 하도록
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-            return viewControllers.count > 1
-    }
-
 }

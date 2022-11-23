@@ -12,25 +12,18 @@ struct CategoryHome: View {
     @State private var showingProfile = false
     
     var body: some View {
-        NavigationView {
+        NavigationView { // 네비게이션의 시작
             List {
+                /// 페이지 컨트롤러가 있는 페이지 뷰
                 PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
                     .aspectRatio(3 / 2, contentMode: .fit)
-                    .listRowInsets(EdgeInsets())
-                
-                /*
-                Image(modelData.features.last?.imageNames.last ?? "")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
-                    .listRowInsets(EdgeInsets())
-                 */
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
                 
                 ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
+                    /// 카테고리 행 뷰
                     CategoryRow(categoryName: key, items: modelData.categories[key]!)
                 }
-                .listRowInsets(EdgeInsets())
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
             }
             .listStyle(.inset)
             .navigationTitle("Landmarks")

@@ -16,6 +16,8 @@ struct LandmarkRow: View {
                 .resizable()
                 .frame(width: 50, height: 50)
                 .cornerRadius(4)
+                .shadow(color: Color(landmark.primeColorHexStr) ?? .white, radius: 6, x: 0, y: 0)
+            
             Text(landmark.name)
 
             Spacer()
@@ -23,6 +25,7 @@ struct LandmarkRow: View {
             if landmark.isFavorite {
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
+                    .shadow(color: .yellow, radius: 6, x: 0, y: 0)
             }
         }
     }

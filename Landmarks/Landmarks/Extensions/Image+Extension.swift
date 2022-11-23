@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 
 extension Image {
+    
+    /// Image를 픽셀 단위로 쪼개서 평균 RGB 값을 구해 UIColor로 리턴
     var averageColor: UIColor? {
         guard let inputImage = CIImage(image: self.asUIImage()) else { return nil }
         let extentVector = CIVector(x: inputImage.extent.origin.x, y: inputImage.extent.origin.y, z: inputImage.extent.size.width, w: inputImage.extent.size.height)

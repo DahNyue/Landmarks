@@ -12,7 +12,6 @@ import Alamofire
 /// ObservableObject, 관측가능한 객체. 객체가 변경되기 전에 내보내는 퍼블리셔가 있는 객체. 즉 Published 변수들을 포함하며, 해당 변수들은 수정 시 객체가 다시 생성됨
 final class ModelData: ObservableObject {
     
-    /// 서버에서 받아오긴 하는데, 피쳐이미지를 단번에 못 가져와서 일단 기본적으로 JSON으로 꺼내놓음. 수정 필요
     @Published var landmarks: [Landmark] = [] // load("landmarkData.json")
     var hikes: [Hike] = load("hikeData.json")
     @Published var profile = Profile.default
@@ -31,6 +30,7 @@ final class ModelData: ObservableObject {
     init() {
         getLandmarks()
     }
+    
     private func selectLandmarkList<T: Decodable>(modelType: T.Type, completion: @escaping (Result<T?,CommonAPIError>) -> Void) -> DataRequest? {
         let url = URL(string: "http://115.68.184.90:8080/swiftUi/landmark/selectLandmarkList")!
         return APIService.shared.requestApi(requestURL:url, requestType: .post, completion: completion)

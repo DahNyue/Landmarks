@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-/// SwiftUI View Extension Structure
+/// View의 엣지에 보더를 넣기 위한 구조체
 struct EdgeBorder: Shape {
 
     var width: CGFloat
@@ -52,8 +52,10 @@ struct EdgeBorder: Shape {
 }
 
 extension View {
+    
     // This function changes our View to UIView, then calls another function
     // to convert the newly-made UIView to a UIImage.
+    /// View to UIImage
     public func asUIImage() -> UIImage {
         let controller = UIHostingController(rootView: self)
         
@@ -77,13 +79,16 @@ extension View {
         return image
     }
     
+    /// View에 원하는 엣지에 컬러 보더를 넣는 Extension
     func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
         overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
     }
 }
 
 extension UIView {
+    
     // This is the function to convert UIView to UIImage
+    /// UIView to UIImage
     public func asUIImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in
@@ -91,6 +96,7 @@ extension UIView {
         }
     }
     
+    /// set spring animation
     func spring(_ duration: Double = 0.1125) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.05, delay: 0, options: .curveEaseOut) {

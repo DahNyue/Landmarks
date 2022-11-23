@@ -83,7 +83,7 @@ struct ProfileSummary: View {
                             ForEach(self.badges, id: \.name) { badge in
                                 HikeBadge(name: badge.name, grayscale: badge.grayscale, hueRotation: badge.hueRotation, isHover: .constant((self.selectedBadge?.name.contains(badge.name)) ?? false))
                                     .onTapGesture {
-                                        // 내부에 버튼없이 생성 시 연결
+                                        /// 내부에 버튼없이 생성 시 연결
                                         self.selectedBadge = badge
                                     }
                             }

@@ -27,7 +27,7 @@ struct LandmarkDetail: View {
 //            self.offset = offset
 //        }) {
         ScrollView {
-            ScrollViewReader { proxy in
+            ScrollViewReader { proxy in /// 스크롤 뷰의 컨텐츠를 리턴하는 느낌으로 이해, 스크롤뷰 안에 사용
                 VStack {
                     MapView(name: landmark.name, coordinate: landmark.locationCoordinate)
                         .ignoresSafeArea(edges: .top)

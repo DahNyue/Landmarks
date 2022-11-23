@@ -17,6 +17,7 @@ extension Animation {
 
 struct HikeGraph: View {
     var hike: Hike
+    /// KeyPath - https://pinelover.tistory.com/273
     var path: KeyPath<Hike.Observation, Range<Double>>
 
     var color: Color {

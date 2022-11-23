@@ -19,6 +19,7 @@ struct CircleImage: View {
     var body: some View {
         let space : CGFloat = 3
         switch preferredViewType {
+            /// 스테인드 글라스의 경우
         case .stainedGlass:
             if imageNames.count == 4 {
                 VStack(spacing: space) {
@@ -67,8 +68,10 @@ struct CircleImage: View {
                 }
                 .shadow(radius: 7)
             }
+            /// 슬라이드 글래스의 경우
         case .slideGlass:
             ZStack {
+                /// 페이지 뷰로 구성
                 PageView(pages: imageNames.map {
                     Image($0).resizable()
                         .aspectRatio(1, contentMode: .fit)
@@ -87,6 +90,7 @@ struct CircleImage: View {
                 .shadow(radius: 7)
                 
                 if imageNames.count > 1 {
+                    /// 페이지 컨트롤러를 뷰 위로 빼기 위해 밖에다 새로 구현
                     PageControl(numberOfPages: imageNames.count, currentPage: $currentPage, isAccent: true)
                         .frame(width: CGFloat(imageNames.count * 18))
                         .padding(.bottom, 275)
