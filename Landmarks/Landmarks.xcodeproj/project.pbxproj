@@ -189,7 +189,6 @@
 				0F6CB83A2913577800EC2BF2 /* LandmarkList.swift */,
 				0F747698291276D70033D5CA /* LandmarkRow.swift */,
 				0F6CB83C29135C7200EC2BF2 /* LandmarkDetail.swift */,
-				0F6CB8452913A16100EC2BF2 /* HexagonParameters.swift */,
 			);
 			path = Landmarks;
 			sourceTree = "<group>";
@@ -211,6 +210,7 @@
 				0F3B054E2914A76900F690C5 /* Image+Extension.swift */,
 				0F3B05502914A8B900F690C5 /* View+Extension.swift */,
 				0FE407DD291E30F300248FE9 /* Array+Extension.swift */,
+				0F4148D929247AEA00ED78D8 /* Navigation+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +222,7 @@
 				0F6CB8492913A83B00EC2BF2 /* BadgeSymbol.swift */,
 				0F6CB84B2913A86D00EC2BF2 /* RotatedBadgeSymbol.swift */,
 				0F6CB84D2913A88C00EC2BF2 /* Badge.swift */,
+				0F6CB8452913A16100EC2BF2 /* HexagonParameters.swift */,
 			);
 			path = Badges;
 			sourceTree = "<group>";
