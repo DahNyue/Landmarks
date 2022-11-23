@@ -13,15 +13,16 @@ struct ProfileSummary: View {
     
     var profile: Profile
     
-    /*
+    var badgeCallback: ((String, Bool) -> Void)?
+    
     var badges: [HikeBadge] = [
-        HikeBadge(name: "First Hike", isHover: false),
-        HikeBadge(name: "Earth Day", hueRotation: Angle(degrees: 90), isHover: false),
-        HikeBadge(name: "Tenth Hike", grayscale: 0.6, hueRotation: Angle(degrees: 45), isHover: false),
-        HikeBadge(name: "Fiftieth Hike", grayscale: 0.5, hueRotation: Angle(degrees: 90), isHover: false),
-        HikeBadge(name: "Hundredth Hike", grayscale: 0.4, hueRotation: Angle(degrees: 135), isHover: false)
+        HikeBadge(name: "First Hike", isHover: .constant(false)),
+        HikeBadge(name: "Earth Day", hueRotation: Angle(degrees: 90), isHover: .constant(false)),
+        HikeBadge(name: "Tenth Hike", grayscale: 0.6, hueRotation: Angle(degrees: 45), isHover: .constant(false)),
+        HikeBadge(name: "Fiftieth Hike", grayscale: 0.5, hueRotation: Angle(degrees: 90), isHover: .constant(false)),
+        HikeBadge(name: "Hundredth Hike", grayscale: 0.4, hueRotation: Angle(degrees: 135), isHover: .constant(false))
     ]
-     */
+    /*
     @ObservedObject var obsect = HikeBadgeDelegate([
         HikeBadge(name: "First Hike", isHover: false),
         HikeBadge(name: "Earth Day", hueRotation: Angle(degrees: 90), isHover: false),
@@ -29,6 +30,7 @@ struct ProfileSummary: View {
         HikeBadge(name: "Fiftieth Hike", grayscale: 0.5, hueRotation: Angle(degrees: 90), isHover: false),
         HikeBadge(name: "Hundredth Hike", grayscale: 0.4, hueRotation: Angle(degrees: 135), isHover: false)
     ])
+     */
     
     /*
     let dateFormat: DateFormatter = {
@@ -43,6 +45,20 @@ struct ProfileSummary: View {
             .locale(Locale(identifier: "ko_KR"))
     }()
     */
+    
+    @State var selectedBadge: HikeBadge? {
+        didSet {
+            if selectedBadge?.name == oldValue?.name {
+                print((selectedBadge?.name ?? "") + " deselected.")
+                /// 선택된 것 다시 클릭 시 토글
+                selectedBadge = nil
+            } else {
+                if selectedBadge != nil {
+                    print(selectedBadge?.name ?? "")
+                }
+            }
+        }
+    }
     
     var body: some View {
         ScrollView {
@@ -64,8 +80,12 @@ struct ProfileSummary: View {
                     
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(self.obsect.badges, id: \.name) { badge in
-                                badge
+                            ForEach(self.badges, id: \.name) { badge in
+                                HikeBadge(name: badge.name, grayscale: badge.grayscale, hueRotation: badge.hueRotation, isHover: .constant((self.selectedBadge?.name.contains(badge.name)) ?? false))
+                                    .onTapGesture {
+                                        // 내부에 버튼없이 생성 시 연결
+                                        self.selectedBadge = badge
+                                    }
                             }
                             /*
                             HikeBadge(name: "First Hike") { (name, isSelected) in
@@ -120,7 +140,7 @@ struct ProfileSummary: View {
         }
     }
 }
-
+/*
 class HikeBadgeDelegate : ObservableObject {
     @Published var badges: [HikeBadge] = []
     
@@ -153,3 +173,4 @@ struct ProfileSummary_Previews: PreviewProvider {
             .environmentObject(ModelData())
     }
 }
+*/

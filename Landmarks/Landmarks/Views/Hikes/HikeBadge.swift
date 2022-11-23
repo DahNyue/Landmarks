@@ -14,31 +14,24 @@ struct HikeBadge: View {
     var grayscale: CGFloat?
     var hueRotation: Angle?
     
-    var callBack: ((_ id: String, _ isSelected: Bool) -> Void)?
-    
-    @State var isHover = false
+    @Binding var isHover: Bool
     
     var body: some View {
         
-        Button(action: {
-            self.isHover.toggle()
-            self.callBack?(self.name, self.isHover)
-        }) {
-            VStack(alignment: .center, spacing: 5) { // 6.8) {
-                Badge()
-                    .frame(width: 300, height: 300)
-                    .scaleEffect(1.0 / 3.0)
-                    .frame(width: 100, height: 100)
-                    .hoverEffect(.lift)
-                    .onHover { hover in
-                        self.isHover = hover
-                    }
-                
-                Text(name)
-                    .font(.caption)
-                    .accessibilityLabel("Badge for \(name).")
-                    .tint(.accentColor)
-            }
+        VStack(alignment: .center, spacing: 5) { // 6.8) {
+            Badge()
+                .frame(width: 300, height: 300)
+                .scaleEffect(1.0 / 3.0)
+                .frame(width: 100, height: 100)
+                .hoverEffect(.lift)
+                .onHover { hover in
+                    self.isHover = hover
+                }
+            
+            Text(name)
+                .font(.caption)
+                .accessibilityLabel("Badge for \(name).")
+                .tint(.accentColor)
         }
         .grayscale(self.grayscale ?? 0)
         .hueRotation(self.hueRotation ?? Angle())
@@ -59,6 +52,6 @@ struct HikeBadge: View {
 
 struct HikeBadge_Previews: PreviewProvider {
     static var previews: some View {
-        HikeBadge(name: "Preview Testing")
+        HikeBadge(name: "Preview Testing", isHover: .constant(false))
     }
 }
